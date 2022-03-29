@@ -6,9 +6,11 @@ var calendarId_ = null;
 var targetCalendar_ = null;
 
 /**
- * @param {string} calendarId
- * @param {array} subscribedChannels
- * @returns {YouTubeLiveCalendar} this object
+ * Set your Calendar ID and subscribed channels. It needs to be called before any other function
+ *
+ * @param {string} calendarId Calendar ID
+ * @param {array} subscribedChannels List of your subscribed channels
+ * @returns {YouTubeLiveCalendar} This object
  */
 function init(calendarId, subscribedChannels) {
   targetCalendar_ = CalendarApp.getCalendarById(calendarId)
@@ -17,7 +19,10 @@ function init(calendarId, subscribedChannels) {
 }
 
 /**
- * @param {string} key
+ * Update upcoming live events for single channel.
+ *
+ * @param {string} key Channel key defined in subscribedChannels
+ * @returns {YouTubeLiveCalendar} This object
  */
 function runChannel(key) {
   var channel = getChannelByKey_(key);
@@ -26,6 +31,11 @@ function runChannel(key) {
   runVideos(videoIds);
 }
 
+/**
+ * Update upcoming live events for all channels in subscribedChannels.
+ *
+ * @returns {YouTubeLiveCalendar} This object
+ */
 function runAllChannels() {
   var videoIds = [];
   for (var subscribedChannel of subscribedChannels_) {
@@ -37,8 +47,8 @@ function runAllChannels() {
 /**
  * Process specific videos
  *
- * @param {string[]} videoIds
- * @returns {YouTubeLiveCalendar} this object
+ * @param {string[]} videoIds YouTube video IDs list
+ * @returns {YouTubeLiveCalendar} This object
  */
 function runVideos(videoIds) {
   if (videoIds.length === 0) {
@@ -151,6 +161,9 @@ function getOldEvents_() {
   return results;
 }
 
+/**
+ * List your subscriptions with channel ID and Channel name
+ */
 function listSubscriptions() {
   var cnt = 0;
   var pageToken = '';

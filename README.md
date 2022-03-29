@@ -1,6 +1,10 @@
 # youtube-live-calendar
 Use Google App Script to create upcoming live events in your Google Calendar
 
+## Setup
+Script ID: `AKfycbwcytUuy06Yf1T_Aoxk6RnNxks5tEpOrZz67i84nI8Sy_jec97INb_9xrhnTpLODpue` \
+See https://developers.google.com/apps-script/guides/libraries
+
 ## Getting Started
 ```js
 var subscribedChannels = [

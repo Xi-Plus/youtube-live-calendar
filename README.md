@@ -20,4 +20,9 @@ function runCDC() {
 function runAllChannels() {
   YTLC.runAllChannels()
 }
+
+// Use this method to list your subscriptions and find channel ID
+function listSubscriptions() {
+  YTLC.listSubscriptions()
+}
 ```

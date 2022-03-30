@@ -3,7 +3,7 @@ Use Google App Script to create upcoming live events in your Google Calendar
 
 ## Setup
 Script ID: `1prTvghhm4asQBDa3YpnmGLoCIWeTZV7dQHDFA-UM4vZLZQ9EAU8zkpmx` \
-See https://developers.google.com/apps-script/guides/libraries
+See https://developers.google.com/apps-script/guides/libraries#add_a_library_to_your_script_project
 
 ## Getting Started
 ```js

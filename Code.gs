@@ -1,5 +1,8 @@
 var SheetLogger = BetterLog
 var IgnoreTitleRegex = /會員限定|會限|會員場/
+var PAST_LIMIT = 3 * 3600 * 1000 // 3 hours
+var CHAT_LIMIT = 30 * 86400 * 1000 // 30 days
+var LIVE_LENGTH = 3600 * 1000 // 1 hour
 
 var subscribedChannels_ = [];
 var calendarId_ = null;
@@ -64,11 +67,11 @@ function runVideos(videoIds) {
     var item = results.items[i];
 
     var now = new Date();
-    var three_hour_ago = new Date(now.getTime() - 3 * 60 * 60 * 1000);
-    var one_month = new Date(now.getTime() + 86400 * 30 * 1000);
+    var past_limit = new Date(now.getTime() - PAST_LIMIT);
+    var chat_limit = new Date(now.getTime() + CHAT_LIMIT);
     var startTime = new Date(item.liveStreamingDetails.scheduledStartTime);
     var publishedAt = new Date(item.snippet.publishedAt);
-    var endTime = new Date(startTime.getTime() + 60 * 60 * 1000);
+    var endTime = new Date(startTime.getTime() + LIVE_LENGTH);
     var channel = getChannelById_(item.snippet.channelId);
     var shortName = channel ? channel.shortName : null;
     var url = 'https://youtu.be/' + item.id;
@@ -78,9 +81,9 @@ function runVideos(videoIds) {
 
     if (IgnoreTitleRegex.test(title)) {
       status = 'member';
-    } else if (startTime > one_month) {
+    } else if (startTime > chat_limit) {
       status = 'chat';
-    } else if (startTime < three_hour_ago) {
+    } else if (startTime < past_limit) {
       status = 'past';
     } else if (item.id in oldEvents) {
       var event = oldEvents[item.id];

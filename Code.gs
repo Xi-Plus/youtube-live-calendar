@@ -100,10 +100,10 @@ function runVideos(videoIds) {
       '%s | %s | %s | %s | %s | %s',
       status,
       item.id,
-      startTime.toLocaleString('zh-tw', { hour12: false }),
+      startTime.toLocaleString('zh-tw', { hourCycle: 'h23' }),
       item.snippet.channelTitle,
       item.snippet.title,
-      publishedAt.toLocaleString('zh-tw', { hour12: false })
+      publishedAt.toLocaleString('zh-tw', { hourCycle: 'h23' })
     );
   }
 }
